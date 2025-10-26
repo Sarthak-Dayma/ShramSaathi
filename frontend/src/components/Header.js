@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
+import './Header.css';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [activeCard, setActiveCard] = useState(null);
   const [language, setLanguage] = useState("English");
+  const { i18n } = useTranslation();
+    const changeLanguage = (lng) => {
+      i18n.changeLanguage(lng);
+    };
+
+  
 
   const toggleCard = (card) => {
     setActiveCard(activeCard === card ? null : card);
@@ -22,6 +31,24 @@ const Header = () => {
             <span className="dot"></span>
           </span>
         </div>
+
+        <div className="logo">
+                {/* Assuming logo links to home */}
+                <Link to="/">ShramSaathi</Link> 
+            </div>
+            <div className="header-right">
+                <select onChange={(e) => changeLanguage(e.target.value)} defaultValue={i18n.language} className="language-selector">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    {/* Add Marathi option later */}
+                </select>
+                {/* --- MODIFICATION HERE --- */}
+                <div className="auth-buttons">
+                    <Link to="/login" className="login-btn">Login</Link>
+                    {/* Changed "Sign In" to "Sign Up" to match the route */}
+                    <Link to="/signup" className="signup-btn">Sign Up</Link>
+                </div>
+            </div>
 
         {/* Cards for Jobs, Post Jobs, Services */}
         <div className="nav-cards">
