@@ -1,0 +1,72 @@
+/* src/pages/PrivacyPolicy.css */
+/* Base styles (similar to About.css) */
+.privacy-policy-page {
+    font-family: 'Poppins', sans-serif;
+    color: #4A4A4A; /* --text-color */
+    line-height: 1.6;
+    background-color: #fff;
+    min-height: 100vh;
+    padding-bottom: 50px; /* Add some bottom padding */
+}
+
+/* Hero Section */
+.privacy-hero-section {
+    height: 40vh; /* Adjust height as needed */
+    background-color: #1e40af; /* Use a solid color or gradient */
+    /* Or use a background image like About.css */
+    /* background-image: url('...'); */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.privacy-hero-section h1 {
+    font-size: 3rem; /* Adjust size */
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.privacy-hero-section p {
+    font-size: 1.4rem; /* Adjust size */
+    max-width: 800px;
+}
+
+/* Content Section */
+.privacy-content-section {
+    width: 90%;
+    max-width: 900px; /* Adjust max-width for readability */
+    margin: 40px auto; /* Add margin */
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.privacy-content-section h2 {
+    font-size: 1.8rem;
+    color: #1e40af; /* --blujobs-blue or --heading-color */
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ff9800; /* Accent color */
+    padding-bottom: 5px;
+}
+.privacy-content-section h2:first-of-type {
+    margin-top: 0;
+}
+
+
+.privacy-content-section p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #4A4A4A; /* --text-color */
+}
+
+/* Add more specific styles if needed */

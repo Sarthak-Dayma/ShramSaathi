@@ -1,5 +1,6 @@
+// src/components/Navbar.js
 import React from "react";
-import { Link } from "react-router-dom";   // ✅ import
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -11,8 +12,8 @@ const Navbar = () => {
         <li><Link to="/Jobs">Jobs</Link></li>
         <li><Link to="/hire">HireBlu</Link></li>
         <li><Link to="/blog">Blog</Link></li>
-        <li><Link to="/contact">Contact Us</Link></li>
-        <li><Link to="/privacy">Privacy Policy</Link></li>
+        <li><Link to="/contact">Contact Us</Link></li>     {/* <-- Ensure this exists */}
+        <li><Link to="/privacy">Privacy Policy</Link></li> {/* <-- Ensure this exists */}
       </ul>
     </nav>
   );
