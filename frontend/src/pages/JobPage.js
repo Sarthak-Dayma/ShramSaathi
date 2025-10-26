@@ -1,246 +1,146 @@
-import React, { useState } from "react";
-import "./JobPage.css";
-import ShramSaathiRoadmap from './img/saathi-roadmap.png'; 
+// src/pages/JobPage.js
+import React, { useState, useEffect } from 'react';
+// --- IMPORT LINK ---
+import { Link } from 'react-router-dom';
+import './JobPage.css';
 
-// --- Mock Data (UPDATED) ---
-const initialJobs = [
-  {
-    id: 1,
-    title: "Plumbing Technician",
-    company: "HouseFix Services",
-    location: "Yelahanka, Bengaluru",
-    salary: "₹ 15,000 / Month",
-    type: "Full Time",
-    category: "Skilled Trade",
-    educationLevel: "12th Pass",
-    experience: "Experienced",
-    description: "Installation and repair of plumbing systems. Must have 2+ years experience.",
-  },
-  {
-    id: 2,
-    title: "Residential Housekeeping Staff",
-    company: "CleanSweep Solutions",
-    location: "Whitefield, Bengaluru",
-    salary: "₹ 18,000 / Month",
-    type: "Full Time",
-    category: "Housekeeping",
-    educationLevel: "10th Pass or Below",
-    experience: "Fresher",
-    description: "General cleaning and maintenance for a residential apartment complex.",
-  },
-  {
-    id: 3,
-    title: "Delivery Driver (Two-Wheeler)",
-    company: "QuickMove Logistics",
-    location: "Koramangala, Bengaluru",
-    salary: "₹ 30,000 / Month",
-    type: "Part Time",
-    category: "Driving/Logistics",
-    educationLevel: "10th Pass or Below",
-    experience: "Experienced",
-    description: "Timely pickup and delivery of packages. Must have valid driving license and 1+ year experience.",
-  },
-  {
-    id: 4,
-    title: "Automotive Mechanic Assistant",
-    company: "Shakti Auto Garage",
-    location: "Kattigenahalli, Bengaluru",
-    salary: "₹ 20,000 / Month",
-    type: "Full Time",
-    category: "Skilled Trade",
-    educationLevel: "12th Pass",
-    experience: "Fresher",
-    description: "Assisting senior mechanics with vehicle repair and maintenance. Basic knowledge preferred.",
-  },
-  {
-    id: 5,
-    title: "Construction Site Helper (Shramik)",
-    company: "Pinnacle Builders",
-    location: "Electronic City, Bengaluru",
-    salary: "₹ 12,000 - 15,000 / Month",
-    type: "Temporary/Daily Wage",
-    category: "Manual Labor",
-    educationLevel: "10th Pass or Below",
-    experience: "Fresher",
-    description: "Loading, unloading, and site clean-up duties. No prior experience required.",
-  },
-  {
-    id: 6,
-    title: "Security Guard",
-    company: "SecureGuard Solutions",
-    location: "Jayanagar, Bengaluru",
-    salary: "₹ 22,000 / Month",
-    type: "Full Time",
-    category: "Security",
-    educationLevel: "10th Pass or Below",
-    experience: "Experienced",
-    description: "Day/night shift security duties for a commercial complex. Ex-servicemen preferred.",
-  },
-  {
-    id: 7,
-    title: "Electrician Helper",
-    company: "Sparky Services",
-    location: "Marathahalli, Bengaluru",
-    salary: "₹ 16,000 / Month",
-    type: "Full Time",
-    category: "Skilled Trade",
-    educationLevel: "12th Pass",
-    experience: "Fresher",
-    description: "Assisting electricians with wiring and installation tasks. ITI certificate a plus.",
-  },
-  {
-    id: 8,
-    title: "Kitchen Helper/Dishwasher", // New Job 1
-    company: "Spice Junction Restaurant",
-    location: "Indiranagar, Bengaluru",
-    salary: "₹ 14,000 / Month",
-    type: "Full Time",
-    category: "Housekeeping",
-    educationLevel: "10th Pass or Below",
-    experience: "Fresher",
-    description: "Assisting the kitchen staff with cleaning, dishwashing, and basic food prep.",
-  },
-  {
-    id: 9,
-    title: "Machine Operator", // New Job 2
-    company: "Precision Manufacturing Ltd.",
-    location: "Peenya Industrial Area, Bengaluru",
-    salary: "₹ 25,000 / Month",
-    type: "Full Time",
-    category: "Skilled Trade",
-    educationLevel: "12th Pass",
-    experience: "Experienced",
-    description: "Operating and maintaining CNC and other industrial machines. Prior experience mandatory.",
-  },
-];
+// --- MOCK DATA REMOVED ---
 
-// --- Filter Options (unchanged) ---
-const jobTypeOptions = ["All", "Full Time", "Part Time", "Temporary/Daily Wage"];
-const categories = ["All", "Manual Labor", "Skilled Trade", "Driving/Logistics", "Housekeeping", "Security"];
+const JobPage = () => {
+  // --- STATE FOR JOBS, FILTERS, AND LOADING ---
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filters, setFilters] = useState({
+    category: 'all',
+    location: 'all',
+    jobType: 'all',
+  });
 
-const JobsPage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [locationTerm, setLocationTerm] = useState("");
-  const [activeJobTypeFilter, setActiveJobTypeFilter] = useState("All");
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState("All");
+  // --- USEEFFECT FOR DATA FETCHING ---
+  useEffect(() => {
+    // This function simulates fetching data from your future Django API
+    const fetchJobs = async () => {
+      setLoading(true);
+      
+      // --- Placeholder API endpoint ---
+      // When your backend is ready, replace this with:
+      // const response = await fetch(`/api/jobs?search=${searchTerm}&category=${filters.category}...`);
+      // const data = await response.json();
+      
+      // --- Simulating API call with mock data ---
+      const mockApiData = [
+        { id: 1, title: 'Construction Worker', company: 'BuildRight Ltd.', location: 'Pune', category: 'construction', jobType: 'full-time', salary: '₹15,000/month', description: 'Seeking hardworking construction workers for a new project.' },
+        { id: 2, title: 'Factory Packer', company: 'PackFast Inc.', location: 'Mumbai', category: 'factory', jobType: 'part-time', salary: '₹10,000/month', description: 'Urgent requirement for packers in a warehouse.' },
+        { id: 3, title: 'Delivery Driver', company: 'QuickDrop Logistics', location: 'Pune', category: 'delivery', jobType: 'full-time', salary: '₹18,000/month', description: 'Driver needed with a valid 2-wheeler license.' },
+        { id: 4, title: 'Hotel Housekeeping', company: 'Grand Hotel', location: 'Delhi', category: 'hospitality', jobType: 'full-time', salary: '₹12,000/month', description: 'Experienced housekeeping staff required.' },
+      ];
+      
+      // Simulate network delay
+      setTimeout(() => {
+        setJobs(mockApiData);
+        setLoading(false);
+      }, 1000);
+    };
 
-  const filteredJobs = initialJobs.filter((job) => {
-    const matchesSearch = 
-      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.company.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesLocation = 
-      locationTerm === "" || job.location.toLowerCase().includes(locationTerm.toLowerCase());
+    fetchJobs();
+  }, [searchTerm, filters]); // Re-fetch when search or filters change
 
-    const matchesJobType =
-      activeJobTypeFilter === "All" || job.type === activeJobTypeFilter;
-    
-    const matchesCategory =
-      activeCategoryFilter === "All" || job.category === activeCategoryFilter;
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+  };
 
-    return matchesSearch && matchesLocation && matchesJobType && matchesCategory;
+  // --- Filtering logic now applies to 'jobs' state ---
+  // In a real app, your API would handle this filtering
+  const filteredJobs = jobs.filter(job => {
+    return (
+      (filters.category === 'all' || job.category === filters.category) &&
+      (filters.location === 'all' || job.location === filters.location) &&
+      (filters.jobType === 'all' || job.jobType === filters.jobType) &&
+      (job.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+       job.company.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
   });
 
   return (
-    <div className="jobs-page">
-      
-      {/* 1. Hero Section with Search Bar */}
-      <div className="hero-search-container">
-        <h1 className="hero-title">GET A JOB IN FEW CLICKS</h1>
-        <p className="hero-subtitle">Your companion for finding the right blue-collar opportunities.</p>
-        <div className="search-inputs-wrapper">
+    <div className="job-page">
+      <header className="job-hero">
+        <h1>Find Your Job</h1>
+        <div className="search-container">
           <input
             type="text"
-            placeholder="Search by job title, skill, or company..."
-            className="search-input"
+            placeholder="Search by title, company..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <input
-            type="text"
-            placeholder="Location (e.g., Bengaluru, Pune)"
-            className="location-input"
-            value={locationTerm}
-            onChange={(e) => setLocationTerm(e.target.value)}
-          />
-          <button className="find-jobs-btn">Find Jobs</button>
+          <button onClick={() => {}}>Search</button>
         </div>
-      </div>
+      </header>
       
-      {/* 2. Available Jobs Section (Top distance reduced via CSS) */}
-      <div className="section-block job-openings-section"> {/* Added a unique class for specific spacing */}
-        <h2 className="section-title">Latest Job Openings</h2>
+      <main className="job-content">
+        <aside className="filters">
+          <h3>Filters</h3>
+          <div className="filter-group">
+            <label htmlFor="category">Category</label>
+            <select name="category" id="category" value={filters.category} onChange={handleFilterChange}>
+              <option value="all">All</option>
+              <option value="construction">Construction</option>
+              <option value="factory">Factory</option>
+              <option value="delivery">Delivery</option>
+              <option value="hospitality">Hospitality</option>
+              {/* Add more categories */}
+            </select>
+          </div>
+          <div className="filter-group">
+            <label htmlFor="location">Location</label>
+            <select name="location" id="location" value={filters.location} onChange={handleFilterChange}>
+              <option value="all">All</option>
+              <option value="Pune">Pune</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Delhi">Delhi</option>
+              {/* Add more locations */}
+            </select>
+          </div>
+          <div className="filter-group">
+            <label htmlFor="jobType">Job Type</label>
+            <select name="jobType" id="jobType" value={filters.jobType} onChange={handleFilterChange}>
+              <option value="all">All</option>
+              <option value="full-time">Full-Time</option>
+              <option value="part-time">Part-Time</option>
+            </select>
+          </div>
+        </aside>
         
-        {/* Additional Filters */}
-        <div className="additional-filters">
-            <select 
-                className="filter-dropdown" 
-                value={activeJobTypeFilter} 
-                onChange={(e) => setActiveJobTypeFilter(e.target.value)}
-            >
-                {jobTypeOptions.map(type => <option key={type} value={type}>{type}</option>)}
-            </select>
-            <select 
-                className="filter-dropdown" 
-                value={activeCategoryFilter} 
-                onChange={(e) => setActiveCategoryFilter(e.target.value)}
-            >
-                {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
-            </select>
-        </div>
-
-        <div className="jobs-grid">
-          {filteredJobs.length > 0 ? (
-            filteredJobs.map((job) => (
-              <div key={job.id} className="job-card">
-                <div className="job-card-header">
-                  <div className="company-logo-placeholder">Hb</div> 
-                  <span className={`job-type job-type-${job.type.split(' ')[0].toLowerCase()}`}>{job.type}</span>
-                </div>
-                
-                <h3 className="job-card-title">{job.title}</h3>
-                <p className="job-card-company">{job.company}</p>
-
-                <div className="job-card-meta">
-                  <p className="job-card-location">📍 {job.location}</p>
-                  <p className="job-card-salary">💰 **{job.salary}**</p>
-                </div>
-                
-                <p className="job-card-description">{job.description.substring(0, 100)}...</p>
-
-                <button className="apply-btn">View & Apply</button>
-              </div>
-            ))
+        <section className="job-listings">
+          {loading ? (
+            <p>Loading jobs...</p>
           ) : (
-            <p className="no-jobs-found">No jobs found matching your criteria. Try adjusting your search or filters!</p>
+            filteredJobs.length > 0 ? (
+              filteredJobs.map(job => (
+                <div className="job-card" key={job.id}>
+                  <h3>{job.title}</h3>
+                  <p className="company">{job.company}</p>
+                  <p className="location">{job.location}</p>
+                  <p className="salary">{job.salary}</p>
+                  <p className="description">{job.description.substring(0, 100)}...</p>
+                  {/* --- UPDATE BUTTON TO LINK --- */}
+                  <Link to={`/jobs/${job.id}`} className="apply-btn">
+                    View & Apply
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <p>No jobs found matching your criteria.</p>
+            )
           )}
-        </div>
-      </div>
-
-      {/* 3. Hiring Flow (Roadmap Image) - Layout updated via CSS */}
-      <div className="section-block hiring-flow-section">
-        <div className="roadmap-layout-container"> {/* New container for text + image */}
-            <div className="roadmap-text-content">
-                <h2 className="section-title white-text">How It Works</h2> 
-                <p>Our goal is to make job hunting easy and efficient for you. Follow these simple steps to secure your next opportunity:</p>
-                <ul>
-                    <li>**Search:** Use filters to find jobs matching your skill and location.</li>
-                    <li>**Apply:** Submit your basic details and required documents.</li>
-                    <li>**Verify:** Our team verifies your profile and shortlists you.</li>
-                    <li>**Interview:** We schedule your interview with the employer.</li>
-                    <li>**Get Hired!** Start your new job immediately.</li>
-                </ul>
-                <button className="find-jobs-btn" style={{marginTop: '20px'}}>Start Your Journey Now</button>
-            </div>
-            
-            <div className="roadmap-image-container">
-                <img src={ShramSaathiRoadmap} alt="Shram Saathi User Journey Roadmap" className="shram-saathi-roadmap-img" />
-            </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };
 
-export default JobsPage;
+export default JobPage;

@@ -1,171 +1,177 @@
-
-
-import React, { useState } from "react";
-import "./HireBluPage.css"; // Reuse the existing CSS file for styles
-
-const jobTypes = ["Full Time", "Part Time", "Temporary/Daily Wage"];
-const categories = ["Manual Labor", "Skilled Trade", "Driving/Logistics", "Housekeeping", "Security", "Other"];
-const educationLevels = ["10th Pass or Below", "12th Pass", "ITI/Diploma", "Graduate"];
-const experienceLevels = ["Fresher (0-1 Year)", "Experienced (1-3 Years)", "Senior (3+ Years)"];
+// src/pages/HireBluePage.js
+import React, { useState } from 'react';
+import './HireBluPage.css';
 
 const HireBluePage = () => {
   const [formData, setFormData] = useState({
-    title: "",
-    company: "",
-    location: "",
-    salary: "",
-    type: "Full Time",
-    category: "Manual Labor",
-    educationLevel: "10th Pass or Below",
-    experience: "Fresher (0-1 Year)",
-    description: "",
-    contactEmail: "",
+    jobTitle: '',
+    companyName: '',
+    location: '',
+    jobType: 'full-time',
+    category: 'construction',
+    salary: '',
+    description: '',
+    educationLevel: 'any',
+    experience: '0-1',
+    contactEmail: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  // --- UPDATE handleSubmit FOR API CALL ---
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // 1. In a real application, you would send 'formData' to your backend API here.
-    console.log("Job Post Submitted:", formData);
+    // --- API Call Simulation ---
+    console.log('Sending form data to backend:', formData);
 
-    // 2. Display a success message or redirect the user
-    alert(`Thank you, ${formData.company}! Your job for '${formData.title}' has been submitted.`);
-    
-    // 3. Clear the form (optional)
-    setFormData({
-      title: "",
-      company: "",
-      location: "",
-      salary: "",
-      type: "Full Time",
-      category: "Manual Labor",
-      educationLevel: "10th Pass or Below",
-      experience: "Fresher (0-1 Year)",
-      description: "",
-      contactEmail: "",
-    });
+    try {
+      // When your Django backend is ready, uncomment this:
+      /*
+      const response = await fetch('/api/jobs/create', { // Your future API endpoint
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer YOUR_AUTH_TOKEN' // Add auth later
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Job posted successfully:', result);
+        alert('Job posted successfully!');
+        // Clear form
+        setFormData({
+          jobTitle: '', companyName: '', location: '', jobType: 'full-time',
+          category: 'construction', salary: '', description: '',
+          educationLevel: 'any', experience: '0-1', contactEmail: '',
+        });
+      } else {
+        console.error('Failed to post job');
+        alert('Failed to post job. Please try again.');
+      }
+      */
+
+      // --- Mock success for now ---
+      alert('Job posted successfully! (Mock)');
+      setFormData({
+        jobTitle: '', companyName: '', location: '', jobType: 'full-time',
+        category: 'construction', salary: '', description: '',
+        educationLevel: 'any', experience: '0-1', contactEmail: '',
+      });
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred. Please try again.');
+    }
   };
 
   return (
-    <div className="jobs-page"> {/* Reusing the main page wrapper class */}
+    <div className="hire-page-container">
+      <header className="hire-hero">
+        <h1>Post a Job on ShramSaathi</h1>
+        <p>Find the best blue-collar talent for your needs.</p>
+      </header>
       
-      {/* Hero Section */}
-      <div className="hire-hero-container">
-        <div className="hire-hero-content">
-          <h1 className="hire-title">Hire the Best Blue-Collar Talent 🛠️</h1>
-          <p className="hire-subtitle">Post your job openings and connect with thousands of skilled workers instantly.</p>
+      <form className="hire-form" onSubmit={handleSubmit}>
+        <div className="form-section-header">
+          <h2>Job Details</h2>
         </div>
-      </div>
 
-      {/* Job Post Form Section */}
-      <div className="section-block hire-form-section">
-        <h2 className="section-title">Post a New Job</h2>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="jobTitle">Job Title</label>
+            <input type="text" id="jobTitle" name="jobTitle" value={formData.jobTitle} onChange={handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" value={formData.companyName} onChange={handleChange} required />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="location">Location (City)</label>
+            <input type="text" id="location" name="location" value={formData.location} onChange={handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="jobType">Job Type</label>
+            <select id="jobType" name="jobType" value={formData.jobType} onChange={handleChange}>
+              <option value="full-time">Full-Time</option>
+              <option value="part-time">Part-Time</option>
+              <option value="contract">Contract</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="category">Job Category</label>
+            <select id="category" name="category" value={formData.category} onChange={handleChange}>
+              <option value="construction">Construction</option>
+              <option value="factory">Factory</option>
+              <option value="driver">Driver</option>
+              <option value="delivery">Delivery</option>
+              <option value="plumber">Plumber</option>
+              <option value="electrician">Electrician</option>
+              <option value="hospitality">Hospitality</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="salary">Salary Range (e.g., ₹15,000 - ₹20,000)</label>
+            <input type="text" id="salary" name="salary" value={formData.salary} onChange={handleChange} required />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="description">Job Description</label>
+          <textarea id="description" name="description" rows="6" value={formData.description} onChange={handleChange} required></textarea>
+        </div>
+
+        <div className="form-section-header">
+          <h2>Requirements</h2>
+        </div>
         
-        <form className="job-post-form" onSubmit={handleSubmit}>
-          
-          {/* Company Details */}
-          <h3>Company Information</h3>
-          <div className="form-row">
-            <input 
-              type="text" 
-              name="company" 
-              placeholder="Company Name" 
-              value={formData.company} 
-              onChange={handleChange} 
-              required 
-            />
-            <input 
-              type="email" 
-              name="contactEmail" 
-              placeholder="Contact Email (for applications)" 
-              value={formData.contactEmail} 
-              onChange={handleChange} 
-              required 
-            />
-          </div>
-
-          <hr />
-
-          {/* Job Details */}
-          <h3>Job Requirements</h3>
-          <div className="form-row full-width">
-            <input 
-              type="text" 
-              name="title" 
-              placeholder="Job Title (e.g., Plumbing Technician)" 
-              value={formData.title} 
-              onChange={handleChange} 
-              required 
-            />
-          </div>
-
-          <div className="form-row">
-            <input 
-              type="text" 
-              name="location" 
-              placeholder="Job Location (e.g., Yelahanka, Bengaluru)" 
-              value={formData.location} 
-              onChange={handleChange} 
-              required 
-            />
-            <input 
-              type="text" 
-              name="salary" 
-              placeholder="Salary (e.g., ₹ 15,000 / Month)" 
-              value={formData.salary} 
-              onChange={handleChange} 
-              required 
-            />
-          </div>
-          
-          {/* Select Fields */}
-          <div className="form-row three-cols">
-            <select name="type" value={formData.type} onChange={handleChange}>
-              {jobTypes.map(type => <option key={type} value={type}>{type}</option>)}
-            </select>
-            
-            <select name="category" value={formData.category} onChange={handleChange}>
-              {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
-            </select>
-            
-            <select name="educationLevel" value={formData.educationLevel} onChange={handleChange}>
-              {educationLevels.map(level => <option key={level} value={level}>{level}</option>)}
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="educationLevel">Education Level</label>
+            <select id="educationLevel" name="educationLevel" value={formData.educationLevel} onChange={handleChange}>
+              <option value="any">Any</option>
+              <option value="10th">10th Pass</option>
+              <option value="12th">12th Pass</option>
+              <option value="iti">ITI/Diploma</option>
             </select>
           </div>
-          
-          <div className="form-row full-width">
-             <select name="experience" value={formData.experience} onChange={handleChange}>
-              {experienceLevels.map(exp => <option key={exp} value={exp}>{exp}</option>)}
+          <div className="form-group">
+            <label htmlFor="experience">Experience Required</label>
+            <select id="experience" name="experience" value={formData.experience} onChange={handleChange}>
+              <option value="0-1">0-1 Year</option>
+              <option value="1-3">1-3 Years</option>
+              <option value="3-5">3-5 Years</option>
+              <option value="5+">5+ Years</option>
             </select>
           </div>
+        </div>
 
-          {/* Description */}
-          <div className="form-row full-width">
-            <textarea 
-              name="description" 
-              placeholder="Detailed Job Description and Responsibilities (Min 50 characters)" 
-              value={formData.description} 
-              onChange={handleChange} 
-              rows="5"
-              minLength="50"
-              required 
-            />
-          </div>
+        <div className="form-section-header">
+          <h2>Contact</h2>
+        </div>
 
-          <button type="submit" className="post-job-btn find-jobs-btn">
-            ✅ Post Job Now
-          </button>
-        </form>
-      </div>
+        <div className="form-group">
+            <label htmlFor="contactEmail">Contact Email or Phone</label>
+            <input type="text" id="contactEmail" name="contactEmail" value={formData.contactEmail} onChange={handleChange} required />
+        </div>
 
+        <button type="submit" className="submit-btn">Post Job</button>
+      </form>
     </div>
   );
 };

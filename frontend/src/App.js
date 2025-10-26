@@ -11,11 +11,11 @@ import BlogsPage from "./pages/BlogsPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ContactUs from "./pages/ContactUs";
 import BlogPostDetail from "./pages/BlogPostDetail";
-// --- IMPORT NEW PAGES ---
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import Profile from "./pages/Profile";
-
+// --- IMPORT NEW JOB DETAIL PAGE ---
+import JobDetailPage from "./pages/JobDetailPage"; 
 
 function App() {
   return (
@@ -25,13 +25,14 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        {/* --- UPDATE JOB ROUTES --- */}
         <Route path="/jobs" element={<JobPage />} />
+        <Route path="/jobs/:jobId" element={<JobDetailPage />} /> 
         <Route path="/hire" element={<HireBluePage />} />
         <Route path="/blog" element={<BlogsPage />} />
         <Route path="/blog/:postId" element={<BlogPostDetail />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/contact" element={<ContactUs />} />
-        {/* --- ADD NEW ROUTES --- */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/profile" element={<Profile />} />
