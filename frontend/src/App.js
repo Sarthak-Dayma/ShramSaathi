@@ -1,4 +1,5 @@
 // src/App.js
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
@@ -8,24 +9,28 @@ import AboutPage from "./pages/About";
 import JobPage from "./pages/JobPage";
 import HireBluePage from "./pages/HireBluePage";
 import BlogsPage from "./pages/BlogsPage";
-import PrivacyPolicy from "./pages/PrivacyPolicy"; // <-- Import Privacy Policy
-import ContactUs from "./pages/ContactUs";         // <-- Import Contact Us
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ContactUs from "./pages/ContactUs";
+// --- IMPORT THE NEW COMPONENT ---
+import BlogPostDetail from "./pages/BlogPostDetail";
 
 function App() {
   return (
     <Router>
       <Header />
-      <Navbar /> {/* Ensure Navbar includes links to /privacy and /contact */}
+      <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/jobs" element={<JobPage />} />
         <Route path="/hire" element={<HireBluePage />} />
+        {/* The main blog page route */}
         <Route path="/blog" element={<BlogsPage />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} /> {/* <-- Add Privacy Policy route */}
-        <Route path="/contact" element={<ContactUs />} />     {/* <-- Add Contact Us route */}
+        {/* --- ADD THE DYNAMIC ROUTE FOR SINGLE POSTS --- */}
+        <Route path="/blog/:postId" element={<BlogPostDetail />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
-      {/* Consider adding a Footer component here later */}
     </Router>
   );
 }

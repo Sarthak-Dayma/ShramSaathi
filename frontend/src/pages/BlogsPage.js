@@ -1,92 +1,64 @@
 // src/pages/BlogsPage.js
 
 import React from "react";
+import { Link } from 'react-router-dom';
 import "./JobPage.css"; // Reusing the existing CSS file
 
-const mockBlogPosts = [
+// Mock data for blog posts (Ensure each post has a unique id)
+const blogPosts = [
   {
     id: 1,
-    title: "The Ultimate Guide to Plumber Certification in India",
-    author: "Shram Saathi Team",
-    date: "Oct 15, 2025",
-    category: "Skilled Trades",
-    summary: "Learn about the necessary certifications, training institutes, and career path for becoming a certified plumber in major Indian cities.",
-    image: "https://m.media-amazon.com/images/I/81p0yPV3mSL._SL1500_.jpg",
+    title: 'The Dignity of Labor: Why Every Job Matters',
+    excerpt: 'In a world that often glorifies white-collar professions, it’s crucial to remember and celebrate the dignity of labor...',
+    content: 'Full content for post 1 goes here. In a world that often glorifies white-collar professions, it’s crucial to remember and celebrate the dignity of labor. Every job, from construction to cleaning, forms the backbone of our society. ShramSaathi is built on this principle, aiming to connect hardworking individuals with opportunities that respect their skills and contributions. This post delves into the importance of recognizing and valuing blue-collar work.',
+    author: 'Admin',
+    date: 'October 26, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80'
   },
   {
     id: 2,
-    title: "How to Negotiate Your Salary as a Delivery Driver",
-    author: "Career Coach Priya",
-    date: "Sep 28, 2025",
-    category: "Driving/Logistics",
-    summary: "Tips and scripts to help you get the best compensation, including variable pay and benefits, from logistics companies like QuickMove.",
-    image: "https://via.placeholder.com/400x200/ff9800/ffffff?text=Salary+Negotiation",
+    title: 'Navigating the Job Market: Tips for Blue-Collar Workers',
+    excerpt: 'Finding the right job can be challenging. In this post, we share practical tips for blue-collar workers to enhance their job search...',
+    content: 'Full content for post 2 goes here. Finding the right job can be challenging. In this post, we share practical tips for blue-collar workers to enhance their job search, from creating a simple yet effective resume to preparing for interviews. We also cover how to leverage platforms like ShramSaathi to find verified and suitable job openings in your vicinity.',
+    author: 'Jane Doe',
+    date: 'October 22, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'
   },
   {
     id: 3,
-    title: "5 Essential Skills for Housekeeping Staff in Apartment Complexes",
-    author: "CleanSweep Manager",
-    date: "Sep 10, 2025",
-    category: "Housekeeping",
-    summary: "Master the fundamental soft and hard skills that top-tier residential and commercial housekeeping firms are looking for right now.",
-    image: "https://via.placeholder.com/400x200/4caf50/ffffff?text=Housekeeping+Skills",
-  },
-  {
-    id: 4,
-    title: "Safety First: A Guide for Construction Site Shramiks",
-    author: "Pinnacle Safety Lead",
-    date: "Aug 20, 2025",
-    category: "Manual Labor",
-    summary: "Crucial safety protocols, gear requirements, and legal rights every construction site worker should know before starting a project.",
-    image: "https://via.placeholder.com/400x200/f44336/ffffff?text=Safety+Guide",
-  },
-  {
-    id: 5,
-    title: "Electrician vs. Mechanic: Choosing Your Skilled Trade Path",
-    author: "Trade Expert Vivek",
-    date: "Jul 05, 2025",
-    category: "Skilled Trades",
-    summary: "A comparison of required training, typical salaries, and long-term career growth between automotive mechanics and certified electricians.",
-    image: "https://via.placeholder.com/400x200/1e40af/ffffff?text=Trade+Comparison",
-  },
+    title: 'Safety First: Ensuring a Secure Work Environment',
+    excerpt: 'Workplace safety is non-negotiable. Employers have a responsibility to provide a safe environment, and workers need to be aware of their rights...',
+    content: 'Full content for post 3 goes here. Workplace safety is non-negotiable. Employers have a responsibility to provide a safe environment, and workers need to be aware of their rights. This article discusses common safety standards, the importance of protective gear, and the steps workers can take if they feel their workplace is unsafe. At ShramSaathi, we encourage employers who prioritize the well-being of their staff.',
+    author: 'John Smith',
+    date: 'October 18, 2025',
+    imageUrl: 'https://images.unsplash.com/photo-1549924231-f969915a7ea3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'
+  }
 ];
+
 
 const BlogsPage = () => {
   return (
-    <div className="jobs-page">
-      
-      {/* Blog Hero Section */}
-      <div className="blog-hero-container">
-        <div className="blog-hero-content">
-          <h1 className="blog-title">Resources & Career Advice 📰</h1>
-          <p className="blog-subtitle">Empowering the workforce with essential knowledge and industry insights.</p>
-        </div>
-      </div>
-
-      {/* Blog Posts Grid */}
-      <div className="section-block blog-post-section">
-        <h2 className="section-title">Latest Articles</h2>
-        
-        <div className="blog-grid">
-          {mockBlogPosts.map(post => (
-            <div key={post.id} className="blog-card">
-              <img src={post.image} alt={post.title} className="blog-card-image" />
-              <div className="blog-card-content">
-                <div className="blog-card-meta">
-                  <span className={`blog-category blog-category-${post.category.split('/')[0].toLowerCase().replace(/\s/g, '-')}`}>{post.category}</span>
-                  <span className="blog-date">📅 {post.date}</span>
-                </div>
-                <h3 className="blog-card-title">{post.title}</h3>
-                <p className="blog-card-summary">{post.summary}</p>
-                <div className="blog-card-footer">
-                    <span className="blog-author">By: {post.author}</span>
-                    <a href="#" className="read-more-btn">Read More →</a>
-                </div>
-              </div>
+    <div className="blogs-page">
+      <header className="blogs-header">
+        <h1>Our Blog</h1>
+        <p>Insights, stories, and updates from the ShramSaathi team.</p>
+      </header>
+      <main className="blogs-grid">
+        {blogPosts.map(post => (
+          <div className="blog-card" key={post.id}>
+            <img src={post.imageUrl} alt={post.title} className="blog-card-image" />
+            <div className="blog-card-content">
+              <h2 className="blog-card-title">{post.title}</h2>
+              <p className="blog-card-meta">By {post.author} on {post.date}</p>
+              <p className="blog-card-excerpt">{post.excerpt}</p>
+              {/* --- MODIFICATION HERE --- */}
+              <Link to={`/blog/${post.id}`} className="read-more-btn">
+                Read More
+              </Link>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        ))}
+      </main>
     </div>
   );
 };
