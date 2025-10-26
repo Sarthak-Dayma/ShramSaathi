@@ -1,0 +1,114 @@
+
+/* ==== Hire Page Hero Section ==== */
+.hire-hero-container {
+    background: linear-gradient(135deg, #1e40af, #5e79c5); /* A friendly green/blue gradient */
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.hire-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.hire-subtitle {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* ==== Job Post Form Section ==== */
+.hire-form-section .section-title {
+    color: #1e40af;
+    margin-top: -40px; /* Match the new green theme */
+}
+.hire-form-section .section-title::after {
+    background: #4caf50;
+}
+
+.job-post-form {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: -10px;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.job-post-form h3 {
+    color: #1e40af;
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-left: 4px solid #ff9800;
+    padding-left: 10px;
+}
+
+.job-post-form hr {
+    border: none;
+    border-top: 1px dashed #e0e0e0;
+    margin: 30px 0;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row.full-width {
+    width: 100%;
+}
+
+.job-post-form input,
+.job-post-form select,
+.job-post-form textarea {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    min-width: 0; /* Important for flex items */
+}
+
+.job-post-form textarea {
+    resize: vertical;
+}
+
+.job-post-form input:focus,
+.job-post-form select:focus,
+.job-post-form textarea:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.post-job-btn {
+    /* Reusing find-jobs-btn style but changing color */
+    background: #4caf50; 
+    padding: 15px 30px;
+    width: 100%;
+    margin-top: 10px;
+}
+.post-job-btn:hover {
+    background: #388e3c;
+}
+
+/* Responsive adjustments for the form */
+@media (max-width: 768px) {
+    .job-post-form {
+        padding: 20px;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .form-row.three-cols {
+        flex-direction: column;
+    }
+}

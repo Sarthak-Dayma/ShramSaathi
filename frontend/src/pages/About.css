@@ -1,0 +1,510 @@
+/* Custom Properties/Variables */
+:root {
+    --blujobs-blue: #0A4BF9;
+    --heading-color: #2D3A4B;
+    --text-color: #4A4A4A;
+    --bg-light-blue: #F0F5FD;
+    --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Global Reset and Typography */
+.about-us-page {
+    font-family: 'Poppins', sans-serif; 
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--heading-color);
+    font-weight: 800;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 0 auto;
+    width: 80%;
+}
+
+/* ---------------------------------- */
+/* Hero Section (Updated) */
+/* ---------------------------------- */
+.hero-section {
+    height: 95vh;
+    /* This URL is from your original code. You might need to change it. */
+    background-image: url('https://blujobs.in/wp-content/uploads/2023/04/5155720_2672335-500x400.jpg'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.hero-section .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+}
+.hero-section h1 { font-size: 4rem; margin-bottom: 20px; font-weight: 800; }
+.hero-section p { font-size: 1.6rem; max-width: 800px; }
+
+
+/* ---------------------------------- */
+/* 1. OUR STORY SECTION (Detailed Content) */
+/* ---------------------------------- */
+.our-story-section {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+.story-title {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.story-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--blujobs-blue);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.story-content {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.story-text {
+    flex: 1;
+    max-width: 50%;
+    font-size: 1.05rem;
+}
+
+.story-text p {
+    margin-bottom: 25px;
+}
+
+.story-image-box {
+    flex: 1;
+    max-width: 50%;
+}
+
+.story-image-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+
+/* ---------------------------------- */
+/* 2. WHAT WE DO SECTION (Cards) */
+/* ---------------------------------- */
+
+.what-we-do-section {
+    padding: 50px 0 100px;
+    background-color: #fff; 
+    margin-top: -90px;
+}
+
+.works-container {
+    display: flex;
+    gap: 50px;
+    padding-bottom: 0;
+}
+
+.works-left {
+    flex: 1;
+    min-width: 350px;
+    padding-top: 30px;
+}
+
+.works-subtitle {
+    color: var(--blujobs-blue);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.works-title {
+    text-align: left;
+    margin-bottom: 40px;
+    font-size: 3rem;
+}
+
+.works-checklist ul {
+    list-style: none;
+    padding-top: 10px;
+}
+
+.works-checklist li {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    color: var(--heading-color);
+}
+
+.check-icon {
+    color: var(--blujobs-blue);
+    margin-right: 15px;
+    font-size: 1.4rem;
+    line-height: 1;
+    font-weight: 900;
+}
+
+.works-right {
+    flex: 2;
+}
+
+.works-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 50px;
+    position: relative;
+    padding: 20px;
+}
+
+.works-card {
+    position: relative;
+    padding: 20px;
+    border-radius: 20px;
+    color: #fff;
+    margin-top: -10px;
+    overflow: hidden;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
+}
+
+.logo-box {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo-box img {
+    width: 70%;
+    height: auto;
+}
+
+.card-text {
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1;
+  
+}
+
+.card-number {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 6rem;
+    font-weight: 900;
+    opacity: 0.2;
+    color: #fff;
+    line-height: 1;
+}
+
+/* Card Colors & Gradients */
+.card-blue { background: linear-gradient(135deg, #71B9FF, #4893F7); }
+.card-yellow { 
+    background: linear-gradient(135deg, #FFD480, #F7AE3F); 
+    grid-column: 2;
+    grid-row: 1;
+}
+.card-purple { 
+    background: linear-gradient(135deg, #CDA6F9, #AE88E4); 
+    grid-column: 1;
+    grid-row: 2;
+}
+.card-green { 
+    background: linear-gradient(135deg, #81E2C1, #51D0A8);
+    position: relative;
+    z-index: 10;
+    box-shadow: none; 
+}
+.card-green .card-number { color: #fff; }
+
+/* Floating Snippet Card */
+.overflow-content {
+    position: absolute;
+    top: -300%; 
+    left: calc(100% + 20px); 
+    transform: translateY(-50%) rotate(2deg);
+    
+    width: 320px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    color: var(--text-color);
+    z-index: 5;
+    border: 1px solid #eee;
+    transition: transform 0.4s ease;
+}
+
+.overflow-title {
+    color: var(--blujobs-blue);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.overflow-content p {
+    margin-bottom: 5px;
+}
+
+.snipping-tool {
+    font-style: italic;
+    color: #777;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.cut-icon {
+    margin-right: 5px;
+    font-size: 1rem;
+}
+
+
+.testimonials-section {
+    background-color: var(--bg-light-blue);
+    padding: 100px 0;
+    margin-top: -200px;
+}
+
+.testimonials-subtitle {
+    color: var(--blujobs-blue);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.testimonials-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* Carousel Track */
+.testimonials-carousel-track {
+    display: flex;
+    overflow: hidden; 
+    scroll-behavior: smooth;
+    margin-bottom: 40px;
+    transition: transform 0.5s ease-in-out; 
+    padding: 0 20px;
+    justify-content: flex-start; 
+}
+
+.testimonial-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 50px 30px 30px;
+    width: 350px; 
+    min-height: 220px;
+    position: relative;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 15px; 
+    flex-shrink: 0; 
+}
+
+.user-avatar-container {
+    position: absolute;
+    top: -3px; 
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 2;
+    background-color: #fff;
+}
+
+.user-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.testimonial-text {
+    font-size: 1rem;
+    margin-top: 5px;
+    
+    line-height: 1.5;
+}
+
+.user-name {
+    color: var(--blujobs-blue);
+    font-weight: 700;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+/* Custom Large Quote Mark */
+.quote-mark-large {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    font-size: 15rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    z-index: 1;
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+}
+
+/* Navigation Arrows */
+.carousel-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-arrow {
+    background-color: #fff;
+    color: var(--blujobs-blue);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-arrow:hover {
+    background-color: var(--blujobs-blue);
+    color: #fff;
+}
+.nav-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* ---------------------------------- */
+/* CTA Section */
+/* ---------------------------------- */
+.cta-section {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: var(--blujobs-blue); 
+    color: #fff;
+}
+.cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; color: #fff;}
+.cta-section p { font-size: 1.2rem; max-width: 700px; margin: auto auto 30px; }
+
+.cta-button {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    color: var(--blujobs-blue);
+    background-color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cta-button:hover { 
+    background-color: #e0eaff; 
+    transform: translateY(-2px);
+}
+
+/* ---------------------------------- */
+/* Responsive Styles */
+/* ---------------------------------- */
+
+@media (max-width: 1024px) {
+    .story-content, .works-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .story-text, .story-image-box, .works-left, .works-right {
+        max-width: 100%;
+    }
+
+    .works-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .overflow-content {
+        left: 100%; 
+        top: 250px;
+        transform: translateY(-50%) rotate(0deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 50px 0;
+    }
+    .works-title {
+        font-size: 2rem;
+    }
+    
+    .testimonials-carousel-track {
+        overflow-x: scroll;
+        justify-content: flex-start;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .testimonials-carousel-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .testimonial-card {
+        width: 300px;
+    }
+
+    .overflow-content {
+        display: none;
+    }
+}
+

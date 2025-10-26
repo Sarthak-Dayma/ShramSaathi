@@ -1,0 +1,584 @@
+/* ==== Base Page Styling ==== */
+.jobs-page {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  color: #1e40af;
+  background: #f5f9ff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.section-block {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==== Section Titles ==== */
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 30px;
+  position: relative;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #ff9800;
+  margin: 10px auto 0;
+  border-radius: 4px;
+}
+.section-title.white-text {
+  color: white;
+}
+.section-title.white-text::after {
+  background: white;
+}
+/* ==== Hero Search Section (Blue Card) - REDUCED SIZE ==== */
+.hero-search-container {
+  /* Reduced vertical padding */
+  background: linear-gradient(135deg, #1e40af, #407cc6);
+  padding: 50px 20px; 
+  text-align: center;
+  color: white;
+  margin-bottom: 50px;
+  
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.hero-search-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://via.placeholder.com/1500x300/1e40af/ffffff?text=ShramSaathi_Background') no-repeat center center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+.hero-title, .hero-subtitle, .search-inputs-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  /* Reduced font size */
+  font-size: 40px; 
+  font-weight: 800;
+  margin-bottom: 10px;
+  margin-top: -10px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  /* Reduced font size */
+  font-size: 18px; 
+  margin-bottom: 30px; 
+  opacity: 0.9;
+}
+
+.search-inputs-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.search-input, .location-input {
+  flex: 2;
+  padding: 15px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  min-width: 200px;
+}
+.location-input {
+  flex: 1;
+}
+
+.find-jobs-btn {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+  flex-shrink: 0;
+}
+.find-jobs-btn:hover {
+  background: #e68900;
+  transform: translateY(-2px);
+}
+
+/* ==== Available Jobs Section Spacing - REDUCED TOP DISTANCE ==== */
+.job-openings-section {
+    padding-top: 60px; 
+    margin-top: -70px;/* Reduced from 60px */
+}
+
+/* ==== Additional Filters ==== */
+.additional-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 40px;
+  margin-top: -20px;
+}
+.filter-dropdown {
+  padding: 10px 20px;
+  border: 1px solid #c0c6e0;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 16px;
+  color: #1e40af;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e40af'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 24px;
+  min-width: 150px;
+}
+.filter-dropdown:hover {
+  border-color: #ff9800;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.filter-dropdown:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.3);
+}
+
+
+/* ==== Available Jobs Grid ==== */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.job-card {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.company-logo-placeholder {
+  width: 50px;
+  height: 50px;
+  background-color: #e0e7ff;
+  color: #1e40af;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.job-type {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+}
+.job-type-full {
+  background: #4caf50;
+}
+.job-type-part {
+  background: #ffc107;
+}
+.job-type-temporary {
+  background: #f44336;
+}
+.job-type-daily {
+  background: #9c27b0;
+}
+
+
+.job-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 5px;
+}
+
+.job-card-company {
+  color: #6b7280;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.job-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.job-card-location, .job-card-salary {
+  font-size: 16px;
+  color: #4b5563;
+  font-weight: 500;
+}
+.job-card-salary strong {
+  color: #1e40af;
+}
+
+.job-card-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 15px;
+  flex-grow: 1;
+  line-height: 1.6;
+}
+
+.apply-btn {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: auto;
+  transition: 0.3s;
+  font-weight: 600;
+  width: 100%;
+  box-shadow: 0 3px 8px rgba(255, 152, 0, 0.3);
+}
+.apply-btn:hover {
+  background: #e2e0dc;
+  transform: translateY(-1px);
+}
+
+.no-jobs-found {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280;
+  padding: 40px;
+  border: 1px dashed #c0c6e0;
+  border-radius: 10px;
+  background-color: white;
+}
+
+/* ==== Hiring Flow (Roadmap Image) - NEW LAYOUT STYLES ==== */
+.hiring-flow-section {
+  background: linear-gradient(to right, #ff9800, #ffc107);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 20px;
+  margin-bottom: 60px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.roadmap-layout-container {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    gap: 40px;
+}
+
+/* Text Content on the Left */
+.roadmap-text-content {
+    flex: 1; 
+    max-width: 45%; 
+    text-align: left;
+}
+.roadmap-text-content .section-title {
+    text-align: left; 
+    margin-left: 0;
+    margin-right: auto;
+    margin-top: 0;
+}
+.roadmap-text-content .section-title::after {
+    margin-left: 0;
+}
+.roadmap-text-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.roadmap-text-content ul {
+    list-style: disc; /* Use standard list style */
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+.roadmap-text-content li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Image Container on the Right */
+.roadmap-image-container {
+    flex: 1; 
+    max-width: 50%; /* Limits the image area */
+    display: flex;
+    justify-content: flex-end; /* Pushes content to the right */
+}
+
+.shram-saathi-roadmap-img {
+    max-width: 100%; /* Image scales within the 50% max-width container */
+    height: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+
+/* ==== Responsive Adjustments ==== */
+@media (max-width: 768px) {
+    /* Adjust top padding for job section on mobile */
+    .job-openings-section {
+        padding-top: 20px; 
+    }
+    .hero-title {
+      font-size: 36px;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+    }
+    .search-inputs-wrapper {
+      flex-direction: column;
+      gap: 10px;
+      padding: 15px;
+    }
+    .search-input, .location-input, .find-jobs-btn {
+      width: 100%;
+      min-width: unset;
+    }
+    
+    /* Roadmap section stacks vertically */
+    .roadmap-layout-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .roadmap-text-content, .roadmap-image-container {
+        max-width: 100%; 
+        text-align: center;
+        justify-content: center;
+    }
+    .roadmap-text-content .section-title {
+        text-align: center;
+        margin-left: auto;
+    }
+    .roadmap-text-content .section-title::after {
+        margin: 10px auto 0;
+    }
+    .roadmap-text-content ul {
+        text-align: left; 
+        margin: 0 auto;
+        max-width: 400px;
+    }
+    
+    .section-title {
+      font-size: 28px;
+    }
+    .jobs-grid {
+      grid-template-columns: 1fr;
+    }
+    .additional-filters {
+      flex-direction: column;
+    }
+    .filter-dropdown {
+      width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-search-container {
+      padding: 40px 15px;
+    }
+    .hero-title {
+      font-size: 28px;
+    }
+    .section-block {
+      padding: 40px 15px;
+    }
+    .section-title {
+      font-size: 24px;
+    }
+}
+/* ============================================== */
+/* ==== NEW STYLES FOR BlogsPage.js ==== */
+/* ============================================== */
+
+/* ==== Blog Hero Section ==== */
+.blog-hero-container {
+    background: linear-gradient(135deg, #1e40af, #2a52be); /* Deep Blue Gradient */
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.blog-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.blog-subtitle {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* ==== Blog Posts Grid ==== */
+.blog-post-section .section-title {
+    color: #1e40af; 
+}
+.blog-post-section .section-title::after {
+    background: #ff9800;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.blog-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.blog-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+.blog-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.blog-category {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+}
+/* Category specific colors */
+.blog-category-skilled { background: #1e40af; }
+.blog-category-driving { background: #ff9800; }
+.blog-category-housekeeping { background: #4caf50; }
+.blog-category-manual { background: #f44336; }
+
+
+.blog-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.blog-card-summary {
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.blog-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.blog-author {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.read-more-btn {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+.read-more-btn:hover {
+    color: #e68900;
+    text-decoration: underline;
+}
+
+
+/* Responsive adjustments for blog page */
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}

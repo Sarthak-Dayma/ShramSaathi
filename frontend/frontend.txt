@@ -1,0 +1,1200 @@
+// Header.js
+
+import React, { useState } from 'react';
+import './Header.css';
+
+const Header = () => {
+  const [activeCard, setActiveCard] = useState(null);
+  const [language, setLanguage] = useState("English");
+
+  const toggleCard = (card) => {
+    setActiveCard(activeCard === card ? null : card);
+  };
+
+  return (
+    <header className="header">
+      <div className="left-section">
+        <div className="logo">
+          <span className="highlight">S</span>
+          <span>hram</span>
+          <span className="highlight">S</span>
+          <span>aath</span>
+          <span className="i-container">
+            ı
+            <span className="dot"></span>
+          </span>
+        </div>
+
+        {/* Cards for Jobs, Post Jobs, Services */}
+        <div className="nav-cards">
+          <div className="nav-card" onClick={() => toggleCard('jobs')}>Jobs</div>
+          <div className="nav-card" onClick={() => toggleCard('postjobs')}>Post Jobs</div>
+          <div className="nav-card" onClick={() => toggleCard('services')}>Services</div>
+        </div>
+
+        <input 
+          type="text" 
+          placeholder="Find jobs" 
+          className="search-bar"
+        />
+      </div>
+
+      <div className="right-section">
+        {/* Language Dropdown */}
+        <select 
+          className="language-select" 
+          value={language} 
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <option value="English">English</option>
+          <option value="Hindi">हिन्दी</option>
+          <option value="Marathi">मराठी</option>
+        </select>
+
+        <a href="#" className="nav-link">Login</a>
+        <a href="#" className="nav-link">/</a>
+        <a href="#" className="nav-link">Sign In</a>
+      </div>
+
+      {/* Floating Cards Section */}
+      {activeCard === 'jobs' && (
+        <div className="floating-card">
+          <div className="card-column">
+            <h3>Jobs in Demand</h3>
+            <ul>
+              <li>Construction Workers</li>
+              <li>Electricians</li>
+              <li>Plumbers</li>
+              <li>Gardner</li>
+              <li>Carpenters</li>
+              <li>Delivery Drivers</li>
+              <li>Housekeeping Staff</li>
+              <li>Security Guards</li>
+              <li>Factory Workers</li>
+            </ul>
+          </div>
+          <div className="card-column">
+            <h3>Types of Job</h3>
+            <ul>
+              <li>Full-Time</li>
+              <li>Part-Time</li>
+              <li>Contract</li>
+            </ul>
+          </div>
+          <div className="card-column">
+            <h3>Jobs by Location</h3>
+            <ul>
+              <li>Mumbai</li>
+              <li>Pune</li>
+              <li>Nashik</li>
+              <li>Kolhapur</li>
+              <li>Thane</li>
+              <li>Aurangabad</li>
+              <li>Ahmednagar</li>
+              <li>Solapur</li>
+              <li>Satara</li>
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {activeCard === 'postjobs' && (
+        <div className="floating-card">
+          <div className="card-column">
+            <h3>Post for Employers</h3>
+            <ul>
+              <li>Skilled Workers</li>
+              <li>Daily Wage Workers</li>
+              <li>Technicians</li>
+            </ul>
+          </div>
+          <div className="card-column">
+            <h3>Job Type</h3>
+            <ul>
+              <li>Short-Term</li>
+              <li>Long-Term</li>
+              <li>Seasonal</li>
+            </ul>
+          </div>
+          <div className="card-column">
+            <h3>Industries</h3>
+            <ul>
+              <li>Construction</li>
+              <li>Manufacturing</li>
+              <li>Transport</li>
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {activeCard === 'services' && (
+        <div className="floating-card">
+          <div className="card-column">
+            <h3>Skill Training</h3>
+            <ul>
+              <li>Welding workshops</li>
+              <li>Electrical repair courses</li>
+              <li>Plumbing certifications</li>
+            </ul>
+          </div>
+          <div className="card-column">
+            <h3>Health & Safety</h3>
+            <ul>
+              <li>Workplace safety training</li>
+              <li>First aid guidance</li>
+              <li>Protective gear support</li>
+            </ul>
+          </div>
+          <div className="card-column">
+            <h3>Support & Welfare</h3>
+            <ul>
+              <li>Legal advice</li>
+              <li>Insurance plans</li>
+              <li>Community programs</li>
+            </ul>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+
+
+export default Header;
+
+
+
+// Navbar.js
+
+import React from "react";
+import { Link } from "react-router-dom";   // ✅ import
+import "./Navbar.css";
+
+const Navbar = () => {
+  return (
+    <nav className="navbar">
+      <ul className="nav-links">
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About Us</Link></li>
+        <li><Link to="/Jobs">Jobs</Link></li>
+        <li><Link to="/hire">HireBlu</Link></li>
+        <li><Link to="/blog">Blog</Link></li>
+        <li><Link to="/contact">Contact Us</Link></li>
+        <li><Link to="/privacy">Privacy Policy</Link></li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;
+
+
+// About.js
+
+import React, { useRef, useState, useEffect } from "react";
+import "./About.css";
+
+// --- Data Definitions ---
+
+const whatWeDoChecklist = [
+    'BROWSE JOB BOARD',
+    'CREATE COMPANY PROFILE',
+    'VIEW RESOURCES',
+    'SUBMIT RESUME',
+];
+
+const whatWeDoCards = [
+    { number: '01', text: 'Connect People with the Right Jobs for Them', color: 'blue' },
+    { number: '02', text: 'Get Your Job Postings & Company Info Out to the World', color: 'yellow' },
+    { number: '03', text: 'Career Advice & Candidate Resources', color: 'purple' },
+    { number: '04', text: 'Free Feedback Makeover', color: 'green' },
+];
+
+const testimonials = [
+    { id: 1, name: 'Madhu Kp', text: 'Good app for finding new jobs', avatar: 'avatar-madhu.png' },
+    { id: 2, name: 'Vinodha Kumari', text: 'It was great and I got the job.', avatar: 'avatar-vinodha.png' },
+    { id: 3, name: 'Manju Yadav', text: 'I have never seen this kind of application so very good', avatar: 'avatar-manju.png' },
+    { id: 4, name: 'Ganesh S.', text: 'Very helpful and user-friendly interface.', avatar: 'avatar-ganesh.png' },
+    { id: 5, name: 'Priya R.', text: 'Found my dream job in a week!', avatar: 'avatar-priya.png' },
+];
+
+// --- Main Component ---
+
+const AboutUs = () => {
+    // --- Embedded Carousel Logic ---
+    const trackRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const cardsPerView = 3; // Number of cards visible at one time
+
+    const updateCarousel = () => {
+        if (trackRef.current) {
+            const firstCard = trackRef.current.querySelector('.testimonial-card');
+            if (!firstCard) return;
+
+            // Card width + margin (30px total margin between cards)
+            const distance = firstCard.offsetWidth + 30; 
+            const transformValue = -currentIndex * distance;
+            trackRef.current.style.transform = `translateX(${transformValue}px)`;
+        }
+    };
+
+    useEffect(() => {
+        updateCarousel();
+    }, [currentIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    const handlePrev = () => {
+        setCurrentIndex(prev => Math.max(0, prev - 1));
+    };
+
+    const handleNext = () => {
+        const maxIndex = Math.max(0, testimonials.length - cardsPerView);
+        setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+    };
+    // -----------------------------------------------------------------
+
+    return (
+        <div className="about-us-page">
+
+            {/* Hero Section - UPDATED with "OUR STORY" */}
+            <section className="hero-section">
+                <div className="overlay">
+                    <h1>OUR STORY</h1> 
+                    <p>It has been always a more challenging approach where our target is to reach every single blue collar employee & related employer out there, nationwide.
+
+At "ShramSaathi" we realise and recognise that each requirement may be different & one-size-fits-all application may fall short of what we have set out to achieve.
+
+This is where our "ShramSaathi" team SAKSHI & SARTHAK  pitches in to empower our web-app addressing every requirement to happy placements.</p>
+                </div>
+            </section>
+            
+            <hr className="section-divider" />
+
+            {/* ================================== */}
+            {/* 2. WHAT WE DO SECTION (Cards & Checklist) */}
+        
+            <section className="what-we-do-section">
+                <div className="container works-container">
+                    
+                    <div className="works-left">
+                        
+                        <h2 className="section-title works-title">What We Do</h2>
+
+                        <div className="works-checklist">
+                            <ul>
+                                {whatWeDoChecklist.map((item, index) => (
+                                    <li key={index}><span className="check-icon">&#10003;</span> {item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="works-right">
+                        <div className="works-cards-grid">
+                            {whatWeDoCards.map((card, index) => (
+                                <div className={`works-card card-${card.color}`} key={index}>
+                                    <div className="logo-box">
+                                        {/* NOTE: Please ensure 'blujobs-logo.png' is available */}
+                                        <img src="https://blujobs.in/wp-content/uploads/2022/07/man.png" /> 
+                                    </div>
+                                    <p className="card-text">{card.text}</p>
+                                    <span className="card-number">{card.number}</span>
+                                    
+                                    {/* Overflow Content for Card 4 only */}
+                                    {card.number === '04' && (
+                                        <div className="overflow-content">
+                                            <h3 className="overflow-title">OUR STORY</h3> 
+                                            <p>It has been always a more challenging approach where our target is to reach every single blue collar employee & related employer out there, nationwide. At blujobs we realise and recognise that each requirement may be different & one-size-fits-all application may fall short...</p>
+                                            <p className="snipping-tool"><span className="cut-icon">&#9986;</span> Snipping Tool</p>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <hr className="section-divider" />
+
+            {/* ================================== */}
+            {/* 3. CLIENTS TESTIMONIALS SECTION */}
+            {/* ================================== */}
+            <section className="testimonials-section">
+                <div className="container testimonials-container">
+                    <p className="testimonials-subtitle"></p>
+                    <h2 className="section-title testimonials-title">What Our Customers Say About Us</h2>
+
+                    <div className="testimonials-carousel-track" ref={trackRef}>
+                        {testimonials.map((testimonial) => (
+                            <div className="testimonial-card" key={testimonial.id}>
+                                <div className="user-avatar-container">
+                                    {/* NOTE: Replace with actual avatar images */}
+                                    <img src={testimonial.avatar} alt={`${testimonial.name} Avatar`} className="user-avatar" />
+                                </div>
+                                <p className="testimonial-text">{testimonial.text}</p>
+                                <p className="user-name">{testimonial.name}</p>
+                                <span className="quote-mark-large">❝</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="carousel-navigation">
+                        <button 
+                            className="nav-arrow prev-btn" 
+                            onClick={handlePrev} 
+                            disabled={currentIndex === 0}
+                            aria-label="Previous Testimonial"
+                        >
+                            &#10094; {/* Left Chevron */}
+                        </button>
+                        <button 
+                            className="nav-arrow next-btn" 
+                            onClick={handleNext} 
+                            disabled={currentIndex >= testimonials.length - cardsPerView}
+                            aria-label="Next Testimonial"
+                        >
+                            &#10095; {/* Right Chevron */}
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="cta-section">
+                <h2>Join ShramSaathi</h2>
+                <p>Whether you’re a worker or employer, start your journey with ShramSaathi today!</p>
+                <button className="cta-button">Get Started</button>
+            </section>
+
+        </div>
+    );
+};
+
+export default AboutUs;
+
+
+
+
+
+
+// BlogsPage.js
+
+// src/pages/BlogsPage.js
+
+import React from "react";
+import "./JobPage.css"; // Reusing the existing CSS file
+
+const mockBlogPosts = [
+  {
+    id: 1,
+    title: "The Ultimate Guide to Plumber Certification in India",
+    author: "Shram Saathi Team",
+    date: "Oct 15, 2025",
+    category: "Skilled Trades",
+    summary: "Learn about the necessary certifications, training institutes, and career path for becoming a certified plumber in major Indian cities.",
+    image: "https://m.media-amazon.com/images/I/81p0yPV3mSL._SL1500_.jpg",
+  },
+  {
+    id: 2,
+    title: "How to Negotiate Your Salary as a Delivery Driver",
+    author: "Career Coach Priya",
+    date: "Sep 28, 2025",
+    category: "Driving/Logistics",
+    summary: "Tips and scripts to help you get the best compensation, including variable pay and benefits, from logistics companies like QuickMove.",
+    image: "https://via.placeholder.com/400x200/ff9800/ffffff?text=Salary+Negotiation",
+  },
+  {
+    id: 3,
+    title: "5 Essential Skills for Housekeeping Staff in Apartment Complexes",
+    author: "CleanSweep Manager",
+    date: "Sep 10, 2025",
+    category: "Housekeeping",
+    summary: "Master the fundamental soft and hard skills that top-tier residential and commercial housekeeping firms are looking for right now.",
+    image: "https://via.placeholder.com/400x200/4caf50/ffffff?text=Housekeeping+Skills",
+  },
+  {
+    id: 4,
+    title: "Safety First: A Guide for Construction Site Shramiks",
+    author: "Pinnacle Safety Lead",
+    date: "Aug 20, 2025",
+    category: "Manual Labor",
+    summary: "Crucial safety protocols, gear requirements, and legal rights every construction site worker should know before starting a project.",
+    image: "https://via.placeholder.com/400x200/f44336/ffffff?text=Safety+Guide",
+  },
+  {
+    id: 5,
+    title: "Electrician vs. Mechanic: Choosing Your Skilled Trade Path",
+    author: "Trade Expert Vivek",
+    date: "Jul 05, 2025",
+    category: "Skilled Trades",
+    summary: "A comparison of required training, typical salaries, and long-term career growth between automotive mechanics and certified electricians.",
+    image: "https://via.placeholder.com/400x200/1e40af/ffffff?text=Trade+Comparison",
+  },
+];
+
+const BlogsPage = () => {
+  return (
+    <div className="jobs-page">
+      
+      {/* Blog Hero Section */}
+      <div className="blog-hero-container">
+        <div className="blog-hero-content">
+          <h1 className="blog-title">Resources & Career Advice 📰</h1>
+          <p className="blog-subtitle">Empowering the workforce with essential knowledge and industry insights.</p>
+        </div>
+      </div>
+
+      {/* Blog Posts Grid */}
+      <div className="section-block blog-post-section">
+        <h2 className="section-title">Latest Articles</h2>
+        
+        <div className="blog-grid">
+          {mockBlogPosts.map(post => (
+            <div key={post.id} className="blog-card">
+              <img src={post.image} alt={post.title} className="blog-card-image" />
+              <div className="blog-card-content">
+                <div className="blog-card-meta">
+                  <span className={`blog-category blog-category-${post.category.split('/')[0].toLowerCase().replace(/\s/g, '-')}`}>{post.category}</span>
+                  <span className="blog-date">📅 {post.date}</span>
+                </div>
+                <h3 className="blog-card-title">{post.title}</h3>
+                <p className="blog-card-summary">{post.summary}</p>
+                <div className="blog-card-footer">
+                    <span className="blog-author">By: {post.author}</span>
+                    <a href="#" className="read-more-btn">Read More →</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BlogsPage;
+
+// HireBluePage.js
+
+
+
+import React, { useState } from "react";
+import "./HireBluPage.css"; // Reuse the existing CSS file for styles
+
+const jobTypes = ["Full Time", "Part Time", "Temporary/Daily Wage"];
+const categories = ["Manual Labor", "Skilled Trade", "Driving/Logistics", "Housekeeping", "Security", "Other"];
+const educationLevels = ["10th Pass or Below", "12th Pass", "ITI/Diploma", "Graduate"];
+const experienceLevels = ["Fresher (0-1 Year)", "Experienced (1-3 Years)", "Senior (3+ Years)"];
+
+const HireBluePage = () => {
+  const [formData, setFormData] = useState({
+    title: "",
+    company: "",
+    location: "",
+    salary: "",
+    type: "Full Time",
+    category: "Manual Labor",
+    educationLevel: "10th Pass or Below",
+    experience: "Fresher (0-1 Year)",
+    description: "",
+    contactEmail: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // 1. In a real application, you would send 'formData' to your backend API here.
+    console.log("Job Post Submitted:", formData);
+
+    // 2. Display a success message or redirect the user
+    alert(`Thank you, ${formData.company}! Your job for '${formData.title}' has been submitted.`);
+    
+    // 3. Clear the form (optional)
+    setFormData({
+      title: "",
+      company: "",
+      location: "",
+      salary: "",
+      type: "Full Time",
+      category: "Manual Labor",
+      educationLevel: "10th Pass or Below",
+      experience: "Fresher (0-1 Year)",
+      description: "",
+      contactEmail: "",
+    });
+  };
+
+  return (
+    <div className="jobs-page"> {/* Reusing the main page wrapper class */}
+      
+      {/* Hero Section */}
+      <div className="hire-hero-container">
+        <div className="hire-hero-content">
+          <h1 className="hire-title">Hire the Best Blue-Collar Talent 🛠️</h1>
+          <p className="hire-subtitle">Post your job openings and connect with thousands of skilled workers instantly.</p>
+        </div>
+      </div>
+
+      {/* Job Post Form Section */}
+      <div className="section-block hire-form-section">
+        <h2 className="section-title">Post a New Job</h2>
+        
+        <form className="job-post-form" onSubmit={handleSubmit}>
+          
+          {/* Company Details */}
+          <h3>Company Information</h3>
+          <div className="form-row">
+            <input 
+              type="text" 
+              name="company" 
+              placeholder="Company Name" 
+              value={formData.company} 
+              onChange={handleChange} 
+              required 
+            />
+            <input 
+              type="email" 
+              name="contactEmail" 
+              placeholder="Contact Email (for applications)" 
+              value={formData.contactEmail} 
+              onChange={handleChange} 
+              required 
+            />
+          </div>
+
+          <hr />
+
+          {/* Job Details */}
+          <h3>Job Requirements</h3>
+          <div className="form-row full-width">
+            <input 
+              type="text" 
+              name="title" 
+              placeholder="Job Title (e.g., Plumbing Technician)" 
+              value={formData.title} 
+              onChange={handleChange} 
+              required 
+            />
+          </div>
+
+          <div className="form-row">
+            <input 
+              type="text" 
+              name="location" 
+              placeholder="Job Location (e.g., Yelahanka, Bengaluru)" 
+              value={formData.location} 
+              onChange={handleChange} 
+              required 
+            />
+            <input 
+              type="text" 
+              name="salary" 
+              placeholder="Salary (e.g., ₹ 15,000 / Month)" 
+              value={formData.salary} 
+              onChange={handleChange} 
+              required 
+            />
+          </div>
+          
+          {/* Select Fields */}
+          <div className="form-row three-cols">
+            <select name="type" value={formData.type} onChange={handleChange}>
+              {jobTypes.map(type => <option key={type} value={type}>{type}</option>)}
+            </select>
+            
+            <select name="category" value={formData.category} onChange={handleChange}>
+              {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+            </select>
+            
+            <select name="educationLevel" value={formData.educationLevel} onChange={handleChange}>
+              {educationLevels.map(level => <option key={level} value={level}>{level}</option>)}
+            </select>
+          </div>
+          
+          <div className="form-row full-width">
+             <select name="experience" value={formData.experience} onChange={handleChange}>
+              {experienceLevels.map(exp => <option key={exp} value={exp}>{exp}</option>)}
+            </select>
+          </div>
+
+          {/* Description */}
+          <div className="form-row full-width">
+            <textarea 
+              name="description" 
+              placeholder="Detailed Job Description and Responsibilities (Min 50 characters)" 
+              value={formData.description} 
+              onChange={handleChange} 
+              rows="5"
+              minLength="50"
+              required 
+            />
+          </div>
+
+          <button type="submit" className="post-job-btn find-jobs-btn">
+            ✅ Post Job Now
+          </button>
+        </form>
+      </div>
+
+    </div>
+  );
+};
+
+export default HireBluePage;
+
+// Home.js
+
+import React from "react";
+import "./Home.css";
+
+function Home() {
+  return (
+    <>
+      <section className="home-banner">
+        <div className="banner-container">
+          {/* Left Section */}
+          <div className="banner-left">
+            {/* Solar Orbit Animation */}
+            <div className="orbit-container">
+              <div className="orbit orbit1">
+                <div className="planet planet1"></div>
+              </div>
+              <div className="orbit orbit2">
+                <div className="planet planet2"></div>
+              </div>
+              <div className="orbit orbit3">
+                <div className="planet planet3"></div>
+              </div>
+            </div>
+
+            <div className="banner-title-card">
+              <div className="banner-title-small">
+                A SIMPLER APPROACH FOR{" "}
+                <span className="highlight"> BLUE COLLAR JOB</span> HUNT
+              </div>
+            </div>
+
+            <div className="banner-title-large">
+              <h2>
+                The most promising application for{" "}
+                <span className="primary">Blue Collar Job Seekers</span> to find
+                jobs.
+              </h2>
+            </div>
+
+            <p className="banner-description">
+              Find jobs that match your interests with us. ShramSaathi provides
+              a platform for workers and employers to connect easily.
+            </p>
+          </div>
+
+          {/* Right Section */}
+          <div className="banner-right">
+            {/* Blue Background Card */}
+            <div className="blue-card-bg"></div>
+
+            {/* Main Worker Image */}
+            <div className="banner-image">
+              <img
+                src="https://blujobs.in/wp-content/uploads/2023/02/r-img2.png"
+                alt="Workers"
+              />
+            </div>
+
+            {/* Stats */}
+            <div className="banner-stats">
+              <div className="stat-card orange">
+                <h3>0000</h3>
+                <p>Jobs Posted</p>
+              </div>
+              <div className="stat-card green">
+                <h3>0000</h3>
+                <p>Job Seekers</p>
+              </div>
+              <div className="stat-card purple">
+                <h3>0000</h3>
+                <p>Jobs Fulfilled</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ✅ How It Works Section */}
+      <section className="how-it-works">
+        <h2 className="section-title">How It Works</h2>
+        <div className="steps-container">
+          <div className="step-card">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/4201/4201973.png"
+              alt="Choose Language"
+            />
+            <h3>Choose your Preferred Language</h3>
+            <p>choose your language</p>
+            <span className="step-number">1</span>
+          </div>
+          <div className="step-card">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png"
+              alt="Register"
+            />
+            <h3>Register with your Details</h3>
+            <p>Register and you may also record details via voice</p>
+            <span className="step-number">2</span>
+          </div>
+          <div className="step-card">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2989/2989993.png"
+              alt="Find Jobs"
+            />
+            <h3>Find your Jobs Easily</h3>
+            <p>Search and apply for jobs as per your skills</p>
+            <span className="step-number">3</span>
+          </div>
+          <div className="step-card">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/942/942748.png"
+              alt="Schedule Interview"
+            />
+            <h3>Schedule Interview</h3>
+            <p>Message employers, schedule your interview & get hired</p>
+            <span className="step-number">4</span>
+          </div>
+        </div>
+
+<section className="job-profiles">
+  <h2 className="profiles-heading">
+    Following are the prominent blue collar job profiles our application covers-
+  </h2>
+  <div className="profiles-container">
+    {[
+      {
+        title: "Warehouse workers",
+        iconUrl: "https://th.bing.com/th/id/OIP.fx7PF2idnJstUEbuNXMwaAHaE8?w=290&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "Shipping, loading, unloading, and placing entities are the main tasks accomplished by a warehouse employee.",
+      },
+      {
+        title: "Delivery boy",
+        iconUrl: "https://th.bing.com/th/id/OIP.JmWeRGRiH9cNUhpjVUgNngHaEJ?w=284&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "A delivery boy is responsible for delivering packages, food, or other items to customers in a timely and efficient manner. They must have good communication and organizational skills, as well as a reliable mode of transportation.",
+      },
+      {
+        title: "Plumbers",
+        iconUrl: "https://th.bing.com/th/id/OIP.nQp_bFmd82OfhV2nTJO1igHaEK?w=330&h=185&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "The tasks fulfilled by a plumber include- installing pipes and repairing broken pipes and leakages. Handling appliances such as washing machines, sinks, bathtubs, appliances, and dishwashers are other chores done/supervised by a plumber.",
+      },
+      {
+        title: "Air conditioner technician",
+        iconUrl: "https://www.bing.com/th/id/OIP.vktl6BD_8tNta37YSP3DvwHaE7?w=185&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",
+        desc: "Repairing dysfunctional ACs, filling or checking gas, repairing broken ACs, and servicing are the main tasks accomplished by an Air conditioner machinist.",
+      },
+      {
+        title: "Manufacturing worker",
+        iconUrl: "https://th.bing.com/th/id/OIP.EuydXA8S48mt_GQQNLA-WQHaFb?w=230&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "Loading raw materials, supplying finished goods, keeping a tab of manufacturing phases, and arranging products are the main skills needed for a manufacturing worker.",
+      },
+      {
+        title: "Housekeeping profile",
+        iconUrl: "https://th.bing.com/th/id/OIP.7diYOW9i_MvczxHFzMxfmwHaEa?w=290&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "Sweeping, mopping, drying, washing clothes, maintaining the given facility/house & managing micro chores are main errands under a housekeeper’s supervision.",
+      },
+      {
+        title: "Pest control worker",
+        iconUrl: "https://th.bing.com/th/id/OIP.TyUHGWILRdkAu9J4Z1MuowHaE8?w=277&h=185&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "Inspecting places, identifying bugs & insects, spraying insecticides & chemicals, and cleaning the buildings are the main actions under the responsibility of a pest control worker.",
+      },
+      {
+        title: "Site technician",
+        iconUrl: "https://th.bing.com/th/id/OIP.EfackFD-amF-RdWO6YHrywHaE7?w=279&h=186&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "Providing technical support, troubleshooting, testing, repairing and managing technical equipment are primary tasks of a site technician.",
+      },
+      {
+        title: "Gardener",
+        iconUrl: "https://th.bing.com/th/id/OIP.B_6TyzMHeGaWlf-0bvhESQHaL4?w=115&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "The actions under supervision of a farm worker include- managing farms, extracting ripened products, tilling the land, sowing, applying fertilizers & pesticides on the field, and harvesting. Managing gardens, watering, tilling, trimming plants, ornamentation, and working trees are tasks of a landscaper.",
+      },
+      {
+        title: "Office boy",
+        iconUrl: "https://th.bing.com/th/id/OIP.gA-CjiRspgTXeTewvN93kAHaD6?w=330&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "Managing and cleaning office workspace, depositing, collecting cheques, files, serving beverages & food to the office team, managing micro tasks of staffers and visitors are important duties of an office boy.",
+      },
+      {
+        title: "Carpenter",
+        iconUrl: "https://th.bing.com/th/id/OIP.jjJy26kjWUyDadoHUHw2GwHaDt?w=322&h=175&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "Carpenter needs precise skills in shaping, repairing, executing fixtures, cutting, and installing wood materials.",
+      },
+      {
+        title: "Truck driver",
+        iconUrl: "https://th.bing.com/th/id/OIP.pYphI9qXsCAxexWQDN1uggHaE7?w=251&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "Driving on long routes, supplying goods and services, and delivering materials to required locations safely and on time.",
+      },
+      {
+        title: "Construction workforce",
+        iconUrl: "https://th.bing.com/th/id/OIP.3vyo_o7Htp09j0Pq7aKgVAHaE8?w=291&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        desc: "The tasks of a construction labourer comprise loading and unpacking raw materials, mixing, sprinkling, and dissipating substances such as cement, dressing, and mortar.",
+      },
+    ].map((job, idx) => (
+      <div key={idx} className="profile-card">
+        <div className="card-icon">
+          <img src={job.iconUrl} alt={job.title} />
+        </div>
+        <div className="card-content">
+          <h3>{job.title}</h3>
+          <p>{job.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+<footer className="site-footer">
+  <div className="footer-container">
+    <div className="footer-left">
+      <h3>ShramSaathi</h3>
+      <p>Connecting blue-collar workers with the right opportunities.</p>
+    </div>
+    <div className="footer-right">
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div className="footer-bottom">
+    <p>&copy; 2025 ShramSaathi. All rights reserved.</p>
+  </div>
+</footer>
+
+        
+      </section>
+    </>
+  );
+  
+}
+
+export default Home;
+
+
+
+// Profile.js
+
+import React from 'react';
+
+function Profile() {
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>Profile Page</h1>
+      <p>Edit and view your profile here.</p>
+    </div>
+  );
+}
+
+export default Profile;
+
+
+// JobPage.js
+
+import React, { useState } from "react";
+import "./JobPage.css";
+import ShramSaathiRoadmap from './img/saathi-roadmap.png'; 
+
+// --- Mock Data (UPDATED) ---
+const initialJobs = [
+  {
+    id: 1,
+    title: "Plumbing Technician",
+    company: "HouseFix Services",
+    location: "Yelahanka, Bengaluru",
+    salary: "₹ 15,000 / Month",
+    type: "Full Time",
+    category: "Skilled Trade",
+    educationLevel: "12th Pass",
+    experience: "Experienced",
+    description: "Installation and repair of plumbing systems. Must have 2+ years experience.",
+  },
+  {
+    id: 2,
+    title: "Residential Housekeeping Staff",
+    company: "CleanSweep Solutions",
+    location: "Whitefield, Bengaluru",
+    salary: "₹ 18,000 / Month",
+    type: "Full Time",
+    category: "Housekeeping",
+    educationLevel: "10th Pass or Below",
+    experience: "Fresher",
+    description: "General cleaning and maintenance for a residential apartment complex.",
+  },
+  {
+    id: 3,
+    title: "Delivery Driver (Two-Wheeler)",
+    company: "QuickMove Logistics",
+    location: "Koramangala, Bengaluru",
+    salary: "₹ 30,000 / Month",
+    type: "Part Time",
+    category: "Driving/Logistics",
+    educationLevel: "10th Pass or Below",
+    experience: "Experienced",
+    description: "Timely pickup and delivery of packages. Must have valid driving license and 1+ year experience.",
+  },
+  {
+    id: 4,
+    title: "Automotive Mechanic Assistant",
+    company: "Shakti Auto Garage",
+    location: "Kattigenahalli, Bengaluru",
+    salary: "₹ 20,000 / Month",
+    type: "Full Time",
+    category: "Skilled Trade",
+    educationLevel: "12th Pass",
+    experience: "Fresher",
+    description: "Assisting senior mechanics with vehicle repair and maintenance. Basic knowledge preferred.",
+  },
+  {
+    id: 5,
+    title: "Construction Site Helper (Shramik)",
+    company: "Pinnacle Builders",
+    location: "Electronic City, Bengaluru",
+    salary: "₹ 12,000 - 15,000 / Month",
+    type: "Temporary/Daily Wage",
+    category: "Manual Labor",
+    educationLevel: "10th Pass or Below",
+    experience: "Fresher",
+    description: "Loading, unloading, and site clean-up duties. No prior experience required.",
+  },
+  {
+    id: 6,
+    title: "Security Guard",
+    company: "SecureGuard Solutions",
+    location: "Jayanagar, Bengaluru",
+    salary: "₹ 22,000 / Month",
+    type: "Full Time",
+    category: "Security",
+    educationLevel: "10th Pass or Below",
+    experience: "Experienced",
+    description: "Day/night shift security duties for a commercial complex. Ex-servicemen preferred.",
+  },
+  {
+    id: 7,
+    title: "Electrician Helper",
+    company: "Sparky Services",
+    location: "Marathahalli, Bengaluru",
+    salary: "₹ 16,000 / Month",
+    type: "Full Time",
+    category: "Skilled Trade",
+    educationLevel: "12th Pass",
+    experience: "Fresher",
+    description: "Assisting electricians with wiring and installation tasks. ITI certificate a plus.",
+  },
+  {
+    id: 8,
+    title: "Kitchen Helper/Dishwasher", // New Job 1
+    company: "Spice Junction Restaurant",
+    location: "Indiranagar, Bengaluru",
+    salary: "₹ 14,000 / Month",
+    type: "Full Time",
+    category: "Housekeeping",
+    educationLevel: "10th Pass or Below",
+    experience: "Fresher",
+    description: "Assisting the kitchen staff with cleaning, dishwashing, and basic food prep.",
+  },
+  {
+    id: 9,
+    title: "Machine Operator", // New Job 2
+    company: "Precision Manufacturing Ltd.",
+    location: "Peenya Industrial Area, Bengaluru",
+    salary: "₹ 25,000 / Month",
+    type: "Full Time",
+    category: "Skilled Trade",
+    educationLevel: "12th Pass",
+    experience: "Experienced",
+    description: "Operating and maintaining CNC and other industrial machines. Prior experience mandatory.",
+  },
+];
+
+// --- Filter Options (unchanged) ---
+const jobTypeOptions = ["All", "Full Time", "Part Time", "Temporary/Daily Wage"];
+const categories = ["All", "Manual Labor", "Skilled Trade", "Driving/Logistics", "Housekeeping", "Security"];
+
+const JobsPage = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [locationTerm, setLocationTerm] = useState("");
+  const [activeJobTypeFilter, setActiveJobTypeFilter] = useState("All");
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState("All");
+
+  const filteredJobs = initialJobs.filter((job) => {
+    const matchesSearch = 
+      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.company.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesLocation = 
+      locationTerm === "" || job.location.toLowerCase().includes(locationTerm.toLowerCase());
+
+    const matchesJobType =
+      activeJobTypeFilter === "All" || job.type === activeJobTypeFilter;
+    
+    const matchesCategory =
+      activeCategoryFilter === "All" || job.category === activeCategoryFilter;
+
+    return matchesSearch && matchesLocation && matchesJobType && matchesCategory;
+  });
+
+  return (
+    <div className="jobs-page">
+      
+      {/* 1. Hero Section with Search Bar */}
+      <div className="hero-search-container">
+        <h1 className="hero-title">GET A JOB IN FEW CLICKS</h1>
+        <p className="hero-subtitle">Your companion for finding the right blue-collar opportunities.</p>
+        <div className="search-inputs-wrapper">
+          <input
+            type="text"
+            placeholder="Search by job title, skill, or company..."
+            className="search-input"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Location (e.g., Bengaluru, Pune)"
+            className="location-input"
+            value={locationTerm}
+            onChange={(e) => setLocationTerm(e.target.value)}
+          />
+          <button className="find-jobs-btn">Find Jobs</button>
+        </div>
+      </div>
+      
+      {/* 2. Available Jobs Section (Top distance reduced via CSS) */}
+      <div className="section-block job-openings-section"> {/* Added a unique class for specific spacing */}
+        <h2 className="section-title">Latest Job Openings</h2>
+        
+        {/* Additional Filters */}
+        <div className="additional-filters">
+            <select 
+                className="filter-dropdown" 
+                value={activeJobTypeFilter} 
+                onChange={(e) => setActiveJobTypeFilter(e.target.value)}
+            >
+                {jobTypeOptions.map(type => <option key={type} value={type}>{type}</option>)}
+            </select>
+            <select 
+                className="filter-dropdown" 
+                value={activeCategoryFilter} 
+                onChange={(e) => setActiveCategoryFilter(e.target.value)}
+            >
+                {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+            </select>
+        </div>
+
+        <div className="jobs-grid">
+          {filteredJobs.length > 0 ? (
+            filteredJobs.map((job) => (
+              <div key={job.id} className="job-card">
+                <div className="job-card-header">
+                  <div className="company-logo-placeholder">Hb</div> 
+                  <span className={`job-type job-type-${job.type.split(' ')[0].toLowerCase()}`}>{job.type}</span>
+                </div>
+                
+                <h3 className="job-card-title">{job.title}</h3>
+                <p className="job-card-company">{job.company}</p>
+
+                <div className="job-card-meta">
+                  <p className="job-card-location">📍 {job.location}</p>
+                  <p className="job-card-salary">💰 **{job.salary}**</p>
+                </div>
+                
+                <p className="job-card-description">{job.description.substring(0, 100)}...</p>
+
+                <button className="apply-btn">View & Apply</button>
+              </div>
+            ))
+          ) : (
+            <p className="no-jobs-found">No jobs found matching your criteria. Try adjusting your search or filters!</p>
+          )}
+        </div>
+      </div>
+
+      {/* 3. Hiring Flow (Roadmap Image) - Layout updated via CSS */}
+      <div className="section-block hiring-flow-section">
+        <div className="roadmap-layout-container"> {/* New container for text + image */}
+            <div className="roadmap-text-content">
+                <h2 className="section-title white-text">How It Works</h2> 
+                <p>Our goal is to make job hunting easy and efficient for you. Follow these simple steps to secure your next opportunity:</p>
+                <ul>
+                    <li>**Search:** Use filters to find jobs matching your skill and location.</li>
+                    <li>**Apply:** Submit your basic details and required documents.</li>
+                    <li>**Verify:** Our team verifies your profile and shortlists you.</li>
+                    <li>**Interview:** We schedule your interview with the employer.</li>
+                    <li>**Get Hired!** Start your new job immediately.</li>
+                </ul>
+                <button className="find-jobs-btn" style={{marginTop: '20px'}}>Start Your Journey Now</button>
+            </div>
+            
+            <div className="roadmap-image-container">
+                <img src={ShramSaathiRoadmap} alt="Shram Saathi User Journey Roadmap" className="shram-saathi-roadmap-img" />
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default JobsPage;
+
+// App.js
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/Home";
+import AboutPage from "./pages/About";
+import JobPage from "./pages/JobPage"; // ✅ file name should match exactly
+import HireBluePage from "./pages/HireBluePage";
+import BlogsPage from "./pages/BlogsPage";
+
+function App() {
+  return (
+    <Router>
+      <Header />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/jobs" element={<JobPage />} />
+        <Route path="/hire" element={<HireBluePage />} />
+        <Route path="/blog" element={<BlogsPage />} />
+        
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+
+
+
+
+// index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';  // Import the CSS file here
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
